@@ -1,10 +1,11 @@
 
 
-# Create your views here.
-from django.http import HttpResponse, HttpResponseRedirect
-from .models import Question,Choice
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.views import generic
+
+from .models import Choice, Question
 
 # def index(request):
 #     # latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -32,6 +33,7 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')[:5]
+
 
 
 class DetailView(generic.DetailView):
